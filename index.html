@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A website that displays a list of countries from an api"
+    />
 
     <!-- font awesome icon -->
     <script
@@ -11,8 +15,10 @@
     ></script>
 
     <!-- css file  -->
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- js file -->
+    <script src="./script.js"></script>
 
     <title>Where in the world?</title>
   </head>
@@ -20,48 +26,55 @@
     <div class="wrapper">
       <!-- primary header -->
       <header class="primary-header" id="primary-header">
-        <p>Where in the world?</p>
-        <button class="dark-mode-toggle" id="dark-mode-toggle">
-          <span>Dark mode</span>
-        </button>
+        <div class="container">
+          <p class="site-name">Where in the world?</p>
+
+          <button class="dark-mode-toggle" id="dark-mode-toggle">
+            <span><i class="fa-regular fa-moon"></i></span>
+            <i class="fa-solid fa-moon"></i>
+            <span>Dark mode</span>
+          </button>
+        </div>
       </header>
 
-      <main>
-        <header class="actions-header">
-          <!-- search bar -->
-          <div class="search-container">
-            <span>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input type="text" placeholder="Search for a country" />
-          </div>
-          <!-- region filter  -->
-          <div class="control">
-            <select name="" id="">
-              <option value="" disabled selected>Filter by Region</option>
-              <option value="africa">Africa</option>
-              <option value="africa">America</option>
-              <option value="africa">Asia</option>
-              <option value="africa">Europe</option>
-              <option value="africa">Oceania</option>
-            </select>
-          </div>
-        </header>
+      <main class="main-content">
+        <div class="container">
+          <header class="controls-header">
+            <!-- search bar -->
+            <div class="search-container">
+              <span class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input type="text" placeholder="Search for a country..." />
+            </div>
+            <!-- region filter  -->
+            <div class="filter-container">
+              <select name="" id="">
+                <option value="" disabled selected>Filter by Region</option>
+                <option value="africa">Africa</option>
+                <option value="africa">America</option>
+                <option value="africa">Asia</option>
+                <option value="africa">Europe</option>
+                <option value="africa">Oceania</option>
+              </select>
+            </div>
+          </header>
 
-        <div class="countries-grid">
-          <template>
-            <article class="country">
-              <img src="" alt="" class="country__flag" />
-              <div>
-                <h3 class="country__name"></h3>
-                <div class="country__details">
-                  <p>Population : <span class="population"></span></p>
-                  <p>Region: <span class="region"></span></p>
-                  <p>Capital: <span class="capital"></span></p>
+          <div class="countries-grid">
+            <template>
+              <article class="country">
+                <img src="" alt="" class="country__flag" />
+                <div>
+                  <h3 class="country__name"></h3>
+                  <div class="country__details">
+                    <p>Population : <span class="population"></span></p>
+                    <p>Region: <span class="region"></span></p>
+                    <p>Capital: <span class="capital"></span></p>
+                  </div>
                 </div>
-              </div>
-            </article>
-          </template>
+              </article>
+            </template>
+          </div>
         </div>
       </main>
     </div>
