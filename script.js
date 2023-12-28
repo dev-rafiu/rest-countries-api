@@ -1,6 +1,39 @@
-const countriesGrid = document.getElementById("countries-grid");
+let darkMode = localStorage.getItem("darkmode");
 
+const countriesGrid = document.getElementById("countries-grid");
 const countryTemplate = document.getElementById("country-template");
+const darkmodeToggle = document.querySelector("#dark-mode-toggle");
+const lightModeIcon = document.querySelector("#lightmode-icon");
+const darkModeIcon = document.querySelector("#darkmode-icon");
+
+function enableDarkMode() {
+  document.body.classList.add("darkmode");
+  localStorage.setItem("darkmode", "enabled");
+
+  lightModeIcon.style.display = "none";
+  darkModeIcon.style.display = "inline-block";
+}
+
+function disableDarkMode() {
+  document.body.classList.remove("darkmode");
+  localStorage.setItem("darkmode", null);
+
+  lightModeIcon.style.display = "inline-block";
+  darkModeIcon.style.display = "none";
+}
+
+if (darkMode === "enabled") {
+  enableDarkMode();
+}
+
+darkmodeToggle.addEventListener("click", () => {
+  darkMode = localStorage.getItem("darkmode");
+  if (darkMode !== "enabled") {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
 
 async function fetchCountries(api) {
   try {
@@ -8,7 +41,7 @@ async function fetchCountries(api) {
     const data = await response.json();
     data.forEach((item) => {
       const { name, population, region, capital, flags } = item;
-      console.log(item);
+      // console.log(item);
       //   const name = item.name;
       //   const population = item.population;
       //   const region = item.region;
