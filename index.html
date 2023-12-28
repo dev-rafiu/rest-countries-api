@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- js file -->
-    <script src="./script.js"></script>
+    <script defer src="./script.js"></script>
 
     <title>Where in the world?</title>
   </head>
@@ -38,7 +38,7 @@
       </header>
 
       <main class="main-content">
-        <div class="container">
+        <div class="container" id="main-container">
           <header class="controls-header">
             <!-- search bar -->
             <div class="search-container">
@@ -60,18 +60,18 @@
             </div>
           </header>
 
-          <div class="countries-grid">
-            <template>
-              <article class="country">
-                <img src="" alt="" class="country__flag" />
-                <div>
-                  <h3 class="country__name"></h3>
+          <div class="countries-grid" id="countries-grid">
+            <template id="country-template">
+              <article class="country" id="country">
+                <img src="" alt="" class="country__flag" id="country__flag" />
                   <div class="country__details">
-                    <p>Population : <span class="population"></span></p>
-                    <p>Region: <span class="region"></span></p>
-                    <p>Capital: <span class="capital"></span></p>
-                  </div>
-                </div>
+                    <h3 class="country__name" id="country__name"></h3>
+                    <p>
+                      Population :
+                      <span class="population" id="population"></span>
+                    </p>
+                    <p>Region: <span class="region" id="region"></span></p>
+                    <p>Capital: <span class="capital" id="capital"></span></p>
               </article>
             </template>
           </div>
