@@ -48,6 +48,11 @@ input:focus-visible {
   outline-offset: 3px;
 }
 
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 ::-moz-placeholder {
   font-family: "Nunito Sans", sans-serif;
   font-size: var(--fs-homepage);
