@@ -5,6 +5,9 @@ const lightModeIcon = document.querySelector("#lightmode-icon");
 const darkModeIcon = document.querySelector("#darkmode-icon");
 
 const countriesGrid = document.getElementById("countries-grid");
+const skeletonLoaderContainer = document.querySelector(
+  "#skeleton-loader-container"
+);
 const countryTemplate = document.getElementById("country-template");
 const regionFilter = document.querySelector("#region-filter");
 
@@ -21,6 +24,7 @@ darkmodeToggle.addEventListener("click", () => {
   }
 });
 
+// initial fetching of countries
 fetchCountries(
   "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
 );
@@ -34,9 +38,11 @@ regionFilter.addEventListener("change", (e) => {
 });
 
 async function fetchCountries(api) {
+  skeletonLoaderContainer.style.display = "grid";
   try {
     const response = await fetch(api);
     const data = await response.json();
+    skeletonLoaderContainer.style.display = "none";
     createCountries(data);
   } catch (err) {
     console.log(err);
@@ -48,7 +54,7 @@ function createCountries(data) {
 
   data.forEach((item) => {
     const { name, population, region, capital, flags } = item;
-    console.log(item);
+
     const country = document.importNode(countryTemplate.content, true);
     const countryFlag = country.querySelector("#country__flag");
     const countryName = country.querySelector("#country__name");
