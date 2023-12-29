@@ -30,9 +30,9 @@
           <p class="site-name">Where in the world?</p>
 
           <button class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="lightmode-icon" id="lightmode-icon"
-              ><i class="fa-regular fa-moon"></i
-            ></span>
+            <span class="lightmode-icon" id="lightmode-icon">
+              <i class="fa-regular fa-moon"></i>
+            </span>
             <span class="darkmode-icon" id="darkmode-icon">
               <i class="fa-solid fa-moon"></i>
             </span>
@@ -51,18 +51,26 @@
               </span>
               <input type="text" placeholder="Search for a country..." />
             </div>
+
             <!-- region filter  -->
             <div class="filter-container">
-              <select name="" id="">
+              <select name="" id="region-filter">
                 <option value="" disabled selected>Filter by Region</option>
                 <option value="africa">Africa</option>
-                <option value="africa">America</option>
-                <option value="africa">Asia</option>
-                <option value="africa">Europe</option>
-                <option value="africa">Oceania</option>
+                <option value="america">America</option>
+                <option value="asia">Asia</option>
+                <option value="europe">Europe</option>
+                <option value="oceania">Oceania</option>
               </select>
             </div>
           </header>
+
+          <!-- <div class="loader countries-grid">
+            <div class="skeleton-loader"></div>
+            <div class="skeleton-loader"></div>
+            <div class="skeleton-loader"></div>
+            <div class="skeleton-loader"></div>
+          </div> -->
 
           <div class="countries-grid" id="countries-grid">
             <template id="country-template">
