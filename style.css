@@ -157,6 +157,7 @@ body {
   border-radius: 5px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  max-width: 28.125rem;
 }
 
 .country img {

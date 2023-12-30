@@ -1,4 +1,10 @@
+const BASE_URL =
+  "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital";
+
 let darkMode = localStorage.getItem("darkmode");
+if (darkMode === "enabled") {
+  enableDarkMode();
+}
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
 const lightModeIcon = document.querySelector("#lightmode-icon");
@@ -8,12 +14,10 @@ const countriesGrid = document.getElementById("countries-grid");
 const skeletonLoaderContainer = document.querySelector(
   "#skeleton-loader-container"
 );
+skeletonLoaderContainer.style.display = "none";
 const countryTemplate = document.getElementById("country-template");
+const searchInput = document.querySelector("#search-input");
 const regionFilter = document.querySelector("#region-filter");
-
-if (darkMode === "enabled") {
-  enableDarkMode();
-}
 
 darkmodeToggle.addEventListener("click", () => {
   darkMode = localStorage.getItem("darkmode");
@@ -24,10 +28,22 @@ darkmodeToggle.addEventListener("click", () => {
   }
 });
 
-// initial fetching of countries
-fetchCountries(
-  "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
-);
+// search country
+let timeoutId;
+searchInput.addEventListener("input", (e) => {
+  clearTimeout(timeoutId);
+  const searchedCountry = e.target.value.toUpperCase();
+
+  if (e.target.value === "") {
+    fetchCountries(BASE_URL);
+  } else {
+    timeoutId = setTimeout(() => {
+      fetchCountries(
+        `https://restcountries.com/v3.1/name/${searchedCountry}?fields=name,flags,population,region,capital`
+      );
+    }, 1000);
+  }
+});
 
 // countries filter by region
 regionFilter.addEventListener("change", (e) => {
@@ -39,8 +55,14 @@ regionFilter.addEventListener("change", (e) => {
 
 async function fetchCountries(api) {
   skeletonLoaderContainer.style.display = "grid";
+
   try {
     const response = await fetch(api);
+    if (response.status === 404) {
+      skeletonLoaderContainer.style.display = "none";
+      countriesGrid.innerHTML = `<p>No countries matched your serched result</p>`;
+      return;
+    }
     const data = await response.json();
     skeletonLoaderContainer.style.display = "none";
     createCountries(data);
@@ -48,6 +70,8 @@ async function fetchCountries(api) {
     console.log(err);
   }
 }
+// initial fetching of countries
+fetchCountries(BASE_URL);
 
 function createCountries(data) {
   countriesGrid.innerHTML = ``;
@@ -76,7 +100,6 @@ function createCountries(data) {
 function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
-
   lightModeIcon.style.display = "none";
   darkModeIcon.style.display = "inline-block";
 }
