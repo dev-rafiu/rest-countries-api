@@ -97,7 +97,7 @@ searchInput.addEventListener("input", (e) => {
 
 ### Continued development
 
-I would like to keep building more project using vanilla JS to understand more
+I would like to keep building more project using vanilla JS to improve my skills and understand more complex concepts.
 
 ### Useful resources
 
