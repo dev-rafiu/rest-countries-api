@@ -14,7 +14,7 @@
   --foreground: var(--dark-mode-elements);
   --gray-background: var(--clr-light-gray);
 
-  --fs-homepage: 1rem;
+  --fs-homepage: 0.8rem;
   --fs-detailspage: 1rem;
 }
 
@@ -39,6 +39,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/*=== global styling ===*/
+.homepage {
+  font-size: var(--fs-homepage);
 }
 
 a:focus-visible,
@@ -81,9 +86,8 @@ input {
 body {
   background: var(--gray-background);
   font-family: "Nunito Sans", sans-serif;
-  font-size: var(--fs-homepage);
   color: var(--foreground);
-}
+} /* end of global styling */
 
 .primary-header {
   background: var(--background);
