@@ -54,22 +54,45 @@ In building this project I learned how to fetch data from an API when filtering 
 
 The second thing I have to learn for the first in plain vanilla JS is how to navigate to an HTML page dynamically and show diffrent content by using the "window.location" property.
 
-To see how you can add code snippets, see below:
-
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<button>Dark mode</button>
 ```
 
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 ```
 
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+regionFilter.addEventListener("change", (e) => {
+  const region = e.target.value;
+  fetchCountries(
+    `https://restcountries.com/v3.1/region/${region}?fields=name,flags,population,region,capital`
+  );
+});
+```
+
+```js
+let timeoutId;
+searchInput.addEventListener("input", (e) => {
+  clearTimeout(timeoutId);
+  const searchedCountry = e.target.value.toUpperCase();
+
+  if (e.target.value === "") {
+    fetchCountries(BASE_URL);
+  } else {
+    timeoutId = setTimeout(() => {
+      fetchCountries(
+        `https://restcountries.com/v3.1/name/${searchedCountry}?fields=name,flags,population,region,capital`
+      );
+    }, 1000);
+  }
+});
 ```
 
 ### Continued development
