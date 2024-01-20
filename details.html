@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome icon -->
+    <script
+      src="https://kit.fontawesome.com/8d7b7c02c4.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- css file  -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- js file -->
+    <script src="./details.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="detailspage">
+      <!-- primary header -->
+      <header class="primary-header" id="primary-header">
+        <div class="container">
+          <p class="site-name">Where in the world?</p>
+
+          <button class="dark-mode-toggle" id="dark-mode-toggle">
+            <span class="lightmode-icon" id="lightmode-icon">
+              <i class="fa-regular fa-moon"></i>
+            </span>
+            <span class="darkmode-icon" id="darkmode-icon">
+              <i class="fa-solid fa-moon"></i>
+            </span>
+            <span>Dark mode</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="details">
+        <div class="container" id="details-container">
+          <a href="index.html">Back</a>
+
+          <template id="country-details-template">
+            <article class="country-details" id="country-card">
+              <img src="" alt="" class="country__flag" id="country__flag" />
+
+              <div class="country__details">
+                <h3 class="country__name" id="country__name"></h3>
+
+                <p>
+                  Native Name:
+                  <span class="native-name" id="native-name"></span>
+                </p>
+                <p>
+                  Population :
+                  <span class="population" id="population"></span>
+                </p>
+                <p>Region: <span class="region" id="region"></span></p>
+                <p>
+                  Sub Region:
+                  <span class="sub-region" id="sub-region"></span>
+                </p>
+                <p>Capital: <span class="capital" id="capital"></span></p>
+              </div>
+            </article>
+          </template>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
