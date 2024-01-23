@@ -1,19 +1,21 @@
 let darkMode = localStorage.getItem("darkmode");
+
 if (darkMode === "enabled") {
   enableDarkMode();
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-// const lightModeIcon = document.querySelector("#lightmode-icon");
-// const darkModeIcon = document.querySelector("#darkmode-icon");
+const lightModeIcon = document.querySelector("#lightmode-icon");
+const darkModeIcon = document.querySelector("#darkmode-icon");
 
-const countryWrapper = document.querySelector("#country-wrapper");
-const countryDetailsTemplate = document.querySelector(
-  "#country-details-template"
+const countryDetailWrapper = document.querySelector("#country-detail-wrapper");
+const countryDetailTemplate = document.querySelector(
+  "#country-detail-template"
 );
 
 const urlParams = new URLSearchParams(window.location.search);
 const countryName = urlParams.get("name");
+
 async function fetchDetails() {
   try {
     const response = await fetch(
@@ -33,6 +35,7 @@ fetchDetails();
 function createDetails(country) {
   const {
     name,
+    borders,
     population,
     region,
     subregion,
@@ -42,60 +45,48 @@ function createDetails(country) {
     languages,
   } = country;
   const langs = Object.values(languages);
-  // console.log(country);
+  console.log(country);
   const native = Object.values(name.nativeName);
-  //   console.log(native[0].official);
+  console.log(native[0].official);
+  const countryDetail = document.importNode(
+    countryDetailTemplate.content,
+    true
+  );
+  const countryFlag = countryDetail.querySelector("#country-detail-flag");
+  const countryName = countryDetail.querySelector("#country-name");
+  const nativeName = countryDetail.querySelector("#native-name");
+  const countryPopulation = countryDetail.querySelector("#population");
+  const countryRegion = countryDetail.querySelector("#region");
+  const subRegion = countryDetail.querySelector("#sub-region");
+  const countryCapital = countryDetail.querySelector("#capital");
 
-  countryWrapper.innerHTML = `
-  <article class="country-details">
-  <img
-    src="${flags.png}"
-    alt="${flags.alt}"
-    class="country__flag"
-    id="country__flag"
-  />
+  const countryCurrencies = countryDetail.querySelector("#currencies");
+  const languagesList = countryDetail.querySelector("#languages-list");
+  const bordersList = countryDetail.querySelector("#borders-list");
 
-  <div class="details">
-    <div class="">
-    <h3 class="country__name" id="country__name">${name.common}</h3>
-    <div class="details-group">
-    <div class="">
-        <p>
-          Native Name:
-          <span class="native-name" id="native-name">${native[0].common}</span>
-        </p>
-        <p>
-          Population :
-          <span class="population" id="population">${population}</span>
-        </p>
-        <p>Region: <span class="region" id="region">${region}</span></p>
-        <p>
-          Sub Region:
-          <span class="sub-region" id="sub-region">${subregion}</span>
-        </p>
-        <p>Capital: <span class="capital" id="capital">${capital}</span></p>
-    </div>
+  countryFlag.alt = flags.alt;
+  countryFlag.src = flags.png;
+  countryName.innerText = name.common;
+  nativeName.innerText = native[0].official;
+  countryPopulation.innerText = population.toLocaleString();
+  countryRegion.innerText = region;
+  subRegion.innerText = subregion;
+  countryCapital.innerText = capital;
 
-     <div class="">
-        <p>Top Level Domain: <span class="" id=""></span></p>
-        <p>Currencies:
-        <span class="capital" id="capital">${Object.keys(currencies)}</span>
-        </p>
-        <p>Languages: 
-        ${langs.map((item, idx) => {
-          return `<span class="capital" id="capital">${item}</span>`;
-        })}
-        </p>
-      </div>
-    </div>
-    </div>
+  countryCurrencies.innerText = Object.keys(currencies);
+  langs.forEach((item) => {
+    const list = document.createElement("li");
+    list.textContent = item + ",";
+    languagesList.appendChild(list);
+  });
 
-    <div class="border-countries">
-      <p>Border Countries:</p>
-    </div>
-  </div>
-</article>
-  `;
+  borders.forEach((item) => {
+    const list = document.createElement("li");
+    list.textContent = item;
+    bordersList.appendChild(list);
+  });
+
+  countryDetailWrapper.appendChild(countryDetail);
 }
 
 darkmodeToggle.addEventListener("click", () => {
@@ -110,6 +101,7 @@ darkmodeToggle.addEventListener("click", () => {
 function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
+
   // lightModeIcon.style.display = "none";
   // darkModeIcon.style.display = "inline-block";
 }

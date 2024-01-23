@@ -7,9 +7,8 @@ if (darkMode === "enabled") {
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-console.log(darkmodeToggle);
-// const lightModeIcon = document.querySelector("#lightmode-icon");
-// const darkModeIcon = document.querySelector("#darkmode-icon");
+const lightModeIcon = document.querySelector("#lightmode-icon");
+const darkModeIcon = document.querySelector("#darkmode-icon");
 
 const countriesGrid = document.getElementById("countries-grid");
 const skeletonLoaderContainer = document.querySelector(
@@ -56,6 +55,7 @@ regionFilter.addEventListener("change", (e) => {
 
 async function fetchCountries(api) {
   skeletonLoaderContainer.style.display = "grid";
+
   try {
     const response = await fetch(api);
     if (response.status === 404) {
@@ -75,6 +75,7 @@ fetchCountries(BASE_URL);
 
 function createCountries(data) {
   countriesGrid.innerHTML = ``;
+
   data.forEach((item) => {
     const { name, population, region, capital, flags } = item;
     // console.log(item);
@@ -93,7 +94,7 @@ function createCountries(data) {
     countryFlag.alt = flags.alt;
     countryFlag.src = flags.png;
     countryName.innerText = name.common;
-    countryPopulation.innerText = population;
+    countryPopulation.innerText = population.toLocaleString();
     countryRegion.innerText = region;
     countryCapital.innerText = capital;
 

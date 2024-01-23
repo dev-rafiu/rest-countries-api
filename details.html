@@ -10,23 +10,23 @@
     ></script>
 
     <!-- css file  -->
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="./style.css" />
 
     <!-- js file -->
     <script src="./details.js" defer></script>
     <title>Document</title>
   </head>
   <body>
-    <div class="detailspage">
+    <div class="details-page">
       <!-- primary header -->
       <header class="primary-header" id="primary-header">
         <div class="container">
           <p class="site-name">Where in the world?</p>
           <button class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="lightmode-icon">
+            <span class="lightmode-icon" id="lightmode-icon">
               <i class="fa-regular fa-moon"></i>
             </span>
-            <span class="darkmode-icon">
+            <span class="darkmode-icon" id="darkmode-icon">
               <i class="fa-solid fa-moon"></i>
             </span>
             <span>Dark mode</span>
@@ -34,13 +34,79 @@
         </div>
       </header>
 
-      <main class="details">
-        <div class="container" id="details-container">
+      <main>
+        <div class="container country-detail-container">
           <a href="index.html" class="back-link">
             <i class="fa-solid fa-arrow-left-long"></i>
             <span>Back</span>
           </a>
-          <div id="country-wrapper" class="country-wrapper"></div>
+
+          <div id="country-detail-wrapper" class="country-detail-wrapper">
+            <!-- this is a template that holds the structure of the country card, all data has been added inside the details.js file -->
+            <template
+              class="country-detail-template"
+              id="country-detail-template"
+            >
+              <article class="country-detail">
+                <img
+                  src=""
+                  alt=""
+                  class="country-detail-flag"
+                  id="country-detail-flag"
+                />
+
+                <div class="details">
+                  <div>
+                    <h3 class="country-name" id="country-name"></h3>
+                    <div class="details-group">
+                      <div>
+                        <p>
+                          Native Name:
+                          <span class="native-name" id="native-name"></span>
+                        </p>
+                        <p>
+                          Population :
+                          <span class="population" id="population"></span>
+                        </p>
+                        <p>
+                          Region:
+                          <span class="region" id="region"></span>
+                        </p>
+                        <p>
+                          Sub Region:
+                          <span class="sub-region" id="sub-region"></span>
+                        </p>
+                        <p>
+                          Capital:
+                          <span class="capital" id="capital"></span>
+                        </p>
+                      </div>
+
+                      <div>
+                        <p>
+                          Top Level Domain:
+                          <span class="top-level-domain" id="top-level-domain">
+                          </span>
+                        </p>
+                        <p>
+                          Currencies:
+                          <span class="currencies" id="currencies"></span>
+                        </p>
+                        <div class="languages-wrapper">
+                          <p>Languages:</p>
+                          <ul class="languages-list" id="languages-list"></ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="borders-wrapper">
+                    <p>Border Countries:</p>
+                    <ul class="borders-list" id="borders-list"></ul>
+                  </div>
+                </div>
+              </article>
+            </template>
+          </div>
         </div>
       </main>
     </div>
