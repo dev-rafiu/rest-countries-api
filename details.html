@@ -22,12 +22,11 @@
       <header class="primary-header" id="primary-header">
         <div class="container">
           <p class="site-name">Where in the world?</p>
-
           <button class="dark-mode-toggle" id="dark-mode-toggle">
-            <span class="lightmode-icon" id="lightmode-icon">
+            <span class="lightmode-icon">
               <i class="fa-regular fa-moon"></i>
             </span>
-            <span class="darkmode-icon" id="darkmode-icon">
+            <span class="darkmode-icon">
               <i class="fa-solid fa-moon"></i>
             </span>
             <span>Dark mode</span>
@@ -37,32 +36,11 @@
 
       <main class="details">
         <div class="container" id="details-container">
-          <a href="index.html">Back</a>
-
-          <template id="country-details-template">
-            <article class="country-details" id="country-card">
-              <img src="" alt="" class="country__flag" id="country__flag" />
-
-              <div class="country__details">
-                <h3 class="country__name" id="country__name"></h3>
-
-                <p>
-                  Native Name:
-                  <span class="native-name" id="native-name"></span>
-                </p>
-                <p>
-                  Population :
-                  <span class="population" id="population"></span>
-                </p>
-                <p>Region: <span class="region" id="region"></span></p>
-                <p>
-                  Sub Region:
-                  <span class="sub-region" id="sub-region"></span>
-                </p>
-                <p>Capital: <span class="capital" id="capital"></span></p>
-              </div>
-            </article>
-          </template>
+          <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left-long"></i>
+            <span>Back</span>
+          </a>
+          <div id="country-wrapper" class="country-wrapper"></div>
         </div>
       </main>
     </div>

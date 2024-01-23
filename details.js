@@ -4,10 +4,10 @@ if (darkMode === "enabled") {
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-const lightModeIcon = document.querySelector("#lightmode-icon");
-const darkModeIcon = document.querySelector("#darkmode-icon");
+// const lightModeIcon = document.querySelector("#lightmode-icon");
+// const darkModeIcon = document.querySelector("#darkmode-icon");
 
-const countryDetailsContainer = document.querySelector("#details-container");
+const countryWrapper = document.querySelector("#country-wrapper");
 const countryDetailsTemplate = document.querySelector(
   "#country-details-template"
 );
@@ -28,7 +28,6 @@ async function fetchDetails() {
     console.log(err);
   }
 }
-
 fetchDetails();
 
 function createDetails(country) {
@@ -43,11 +42,11 @@ function createDetails(country) {
     languages,
   } = country;
   const langs = Object.values(languages);
-  console.log(country);
+  // console.log(country);
   const native = Object.values(name.nativeName);
   //   console.log(native[0].official);
 
-  countryDetailsContainer.innerHTML = `
+  countryWrapper.innerHTML = `
   <article class="country-details">
   <img
     src="${flags.png}"
@@ -57,9 +56,10 @@ function createDetails(country) {
   />
 
   <div class="details">
-    <div class="group">
-      <div class="">
-        <h3 class="country__name" id="country__name">${name.common}</h3>
+    <div class="">
+    <h3 class="country__name" id="country__name">${name.common}</h3>
+    <div class="details-group">
+    <div class="">
         <p>
           Native Name:
           <span class="native-name" id="native-name">${native[0].common}</span>
@@ -74,9 +74,9 @@ function createDetails(country) {
           <span class="sub-region" id="sub-region">${subregion}</span>
         </p>
         <p>Capital: <span class="capital" id="capital">${capital}</span></p>
-      </div>
+    </div>
 
-      <div class="">
+     <div class="">
         <p>Top Level Domain: <span class="" id=""></span></p>
         <p>Currencies:
         <span class="capital" id="capital">${Object.keys(currencies)}</span>
@@ -87,6 +87,7 @@ function createDetails(country) {
         })}
         </p>
       </div>
+    </div>
     </div>
 
     <div class="border-countries">
@@ -109,14 +110,14 @@ darkmodeToggle.addEventListener("click", () => {
 function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
-  lightModeIcon.style.display = "none";
-  darkModeIcon.style.display = "inline-block";
+  // lightModeIcon.style.display = "none";
+  // darkModeIcon.style.display = "inline-block";
 }
 
 function disableDarkMode() {
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
 
-  lightModeIcon.style.display = "inline-block";
-  darkModeIcon.style.display = "none";
+  // lightModeIcon.style.display = "inline-block";
+  // darkModeIcon.style.display = "none";
 }
