@@ -45,9 +45,9 @@ function createDetails(country) {
     languages,
   } = country;
   const langs = Object.values(languages);
-  console.log(country);
+  // console.log(country);
+  const firstProp = Object.keys(currencies)[0];
   const native = Object.values(name.nativeName);
-  console.log(native[0].official);
   const countryDetail = document.importNode(
     countryDetailTemplate.content,
     true
@@ -73,20 +73,23 @@ function createDetails(country) {
   subRegion.innerText = subregion;
   countryCapital.innerText = capital;
 
-  countryCurrencies.innerText = Object.keys(currencies);
-  langs.forEach((item) => {
-    const list = document.createElement("li");
-    list.textContent = item + ",";
-    languagesList.appendChild(list);
-  });
-
-  borders.forEach((item) => {
-    const list = document.createElement("li");
-    list.textContent = item;
-    bordersList.appendChild(list);
-  });
+  countryCurrencies.innerText = currencies[firstProp].name;
+  createList(langs, languagesList, ",");
+  createList(borders, bordersList);
 
   countryDetailWrapper.appendChild(countryDetail);
+}
+
+function createList(listData, parentElement, separator) {
+  listData.forEach((item) => {
+    const list = document.createElement("li");
+    if (typeof separator !== "undefined") {
+      list.textContent = item + " ,";
+    } else {
+      list.textContent = item;
+    }
+    parentElement.appendChild(list);
+  });
 }
 
 darkmodeToggle.addEventListener("click", () => {
