@@ -5,8 +5,8 @@ if (darkMode === "enabled") {
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-const lightModeIcon = document.querySelector("#lightmode-icon");
-const darkModeIcon = document.querySelector("#darkmode-icon");
+const darkModeSvg = document.getElementById("darkmode-svg");
+const lightModeSvg = document.getElementById("lightmode-svg");
 
 const countryDetailWrapper = document.querySelector("#country-detail-wrapper");
 const countryDetailTemplate = document.querySelector(
@@ -105,14 +105,14 @@ function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
 
-  // lightModeIcon.style.display = "none";
-  // darkModeIcon.style.display = "inline-block";
+  lightModeSvg.style.display = "none";
+  darkModeSvg.style.display = "inline-block";
 }
 
 function disableDarkMode() {
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
 
-  // lightModeIcon.style.display = "inline-block";
-  // darkModeIcon.style.display = "none";
+  lightModeSvg.style.display = "inline-block";
+  darkModeSvg.style.display = "none";
 }

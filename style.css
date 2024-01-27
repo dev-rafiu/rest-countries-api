@@ -121,19 +121,21 @@ body {
 }
 
 .dark-mode-toggle {
-  background: inherit;
+  background: transparent;
   border: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  color: inherit;
 }
 
-.dark-mode-toggle i {
-  background-color: inherit;
+.dark-mode-toggle svg {
+  width: 1rem;
+  /* background: green; */
 }
 
-.darkmode-icon {
+.darkmode-svg {
   display: none;
 }
 

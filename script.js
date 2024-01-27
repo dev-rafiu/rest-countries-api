@@ -7,8 +7,8 @@ if (darkMode === "enabled") {
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-const lightModeIcon = document.querySelector("#lightmode-icon");
-const darkModeIcon = document.querySelector("#darkmode-icon");
+const darkModeSvg = document.getElementById("darkmode-svg");
+const lightModeSvg = document.getElementById("lightmode-svg");
 
 const countriesGrid = document.getElementById("countries-grid");
 const skeletonLoaderContainer = document.querySelector(
@@ -55,6 +55,7 @@ regionFilter.addEventListener("change", (e) => {
 
 async function fetchCountries(api) {
   skeletonLoaderContainer.style.display = "grid";
+  countriesGrid.style.display = "none";
 
   try {
     const response = await fetch(api);
@@ -65,6 +66,7 @@ async function fetchCountries(api) {
     }
     const data = await response.json();
     skeletonLoaderContainer.style.display = "none";
+    countriesGrid.style.display = "grid";
     createCountries(data);
   } catch (err) {
     console.log(err);
@@ -106,14 +108,17 @@ function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
 
-  // lightModeIcon.style.display = "none";
-  // darkModeIcon.style.display = "inline-block";
+  lightModeSvg.style.display = "none";
+  darkModeSvg.style.display = "inline-block";
 }
 
 function disableDarkMode() {
+  const darkModeSvg = document.getElementById("darkmode-svg");
+  const lightModeSvg = document.getElementById("lightmode-svg");
+
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
 
-  // lightModeIcon.style.display = "inline-block";
-  // darkModeIcon.style.display = "none";
+  lightModeSvg.style.display = "inline-block";
+  darkModeSvg.style.display = "none";
 }
