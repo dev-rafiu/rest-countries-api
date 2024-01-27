@@ -135,10 +135,6 @@ body {
   /* background: green; */
 }
 
-.darkmode-svg {
-  display: none;
-}
-
 /*== skeleton loader==*/
 .skeleton-loader {
   background: var(--background);

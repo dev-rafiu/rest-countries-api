@@ -16,20 +16,14 @@ const regionFilter = document.querySelector("#region-filter");
 let darkMode = localStorage.getItem("darkmode");
 if (darkMode === "enabled") {
   enableDarkMode();
-  darkModeSvg.style.display = "inline-block";
-  lightModeSvg.style.display = "none";
 }
 
 darkmodeToggle.addEventListener("click", () => {
   darkMode = localStorage.getItem("darkmode");
   if (darkMode !== "enabled") {
     enableDarkMode();
-    darkModeSvg.style.display = "inline-block";
-    lightModeSvg.style.display = "none";
   } else {
     disableDarkMode();
-    lightModeSvg.style.display = "none";
-    darkModeSvg.style.display = "inline-block";
   }
 });
 
@@ -38,7 +32,6 @@ let timeoutId;
 searchInput.addEventListener("input", (e) => {
   clearTimeout(timeoutId);
   const searchedCountry = e.target.value.toUpperCase();
-
   if (e.target.value === "") {
     fetchCountries(BASE_URL);
   } else {
@@ -61,7 +54,6 @@ regionFilter.addEventListener("change", (e) => {
 async function fetchCountries(api) {
   skeletonLoaderContainer.style.display = "grid";
   countriesGrid.style.display = "none";
-
   try {
     const response = await fetch(api);
     if (response.status === 404) {
@@ -112,18 +104,9 @@ function createCountries(data) {
 function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
-
-  // lightModeSvg.style.display = "none";
-  // darkModeSvg.style.display = "inline-block";
 }
 
 function disableDarkMode() {
-  const darkModeSvg = document.getElementById("darkmode-svg");
-  const lightModeSvg = document.getElementById("lightmode-svg");
-
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
-
-  // lightModeSvg.style.display = "inline-block";
-  // darkModeSvg.style.display = "none";
 }

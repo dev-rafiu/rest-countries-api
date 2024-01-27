@@ -5,8 +5,6 @@ if (darkMode === "enabled") {
 }
 
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
-const darkModeSvg = document.getElementById("darkmode-svg");
-const lightModeSvg = document.getElementById("lightmode-svg");
 
 const countryDetailWrapper = document.querySelector("#country-detail-wrapper");
 const countryDetailTemplate = document.querySelector(
@@ -17,6 +15,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const countryName = urlParams.get("name");
 
 async function fetchDetails() {
+  countryDetailWrapper.innerHTML = `<p>Loading results...</p>`;
   try {
     const response = await fetch(
       `https://restcountries.com/v3.1/name/${countryName}?fields=name,flags,population,region,subregion,capital,borders,currencies,languages`
@@ -25,6 +24,7 @@ async function fetchDetails() {
       return;
     }
     const data = await response.json();
+    countryDetailWrapper.innerHTML = ``;
     createDetails(data[0]);
   } catch (err) {
     console.log(err);
@@ -104,15 +104,9 @@ darkmodeToggle.addEventListener("click", () => {
 function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
-
-  lightModeSvg.style.display = "none";
-  darkModeSvg.style.display = "inline-block";
 }
 
 function disableDarkMode() {
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
-
-  lightModeSvg.style.display = "inline-block";
-  darkModeSvg.style.display = "none";
 }
