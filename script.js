@@ -81,7 +81,7 @@ function createCountries(data) {
     const country = document.importNode(countryTemplate.content, true);
     const countryCard = country.querySelector("#country-card");
     countryCard.addEventListener("click", () => {
-      window.location.href = `details.html?name=${name.common}`;
+      window.location.href = `details.html?name=${name.official}`;
     });
 
     const countryFlag = country.querySelector("#country__flag");
