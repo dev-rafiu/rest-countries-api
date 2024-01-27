@@ -1,11 +1,5 @@
 const BASE_URL = "https://restcountries.com/v3.1/all";
 // "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital";
-
-let darkMode = localStorage.getItem("darkmode");
-if (darkMode === "enabled") {
-  enableDarkMode();
-}
-
 const darkmodeToggle = document.querySelector("#dark-mode-toggle");
 const darkModeSvg = document.getElementById("darkmode-svg");
 const lightModeSvg = document.getElementById("lightmode-svg");
@@ -19,12 +13,23 @@ const countryTemplate = document.getElementById("country-template");
 const searchInput = document.querySelector("#search-input");
 const regionFilter = document.querySelector("#region-filter");
 
+let darkMode = localStorage.getItem("darkmode");
+if (darkMode === "enabled") {
+  enableDarkMode();
+  darkModeSvg.style.display = "inline-block";
+  lightModeSvg.style.display = "none";
+}
+
 darkmodeToggle.addEventListener("click", () => {
   darkMode = localStorage.getItem("darkmode");
   if (darkMode !== "enabled") {
     enableDarkMode();
+    darkModeSvg.style.display = "inline-block";
+    lightModeSvg.style.display = "none";
   } else {
     disableDarkMode();
+    lightModeSvg.style.display = "none";
+    darkModeSvg.style.display = "inline-block";
   }
 });
 
@@ -108,8 +113,8 @@ function enableDarkMode() {
   document.body.classList.add("darkmode");
   localStorage.setItem("darkmode", "enabled");
 
-  lightModeSvg.style.display = "none";
-  darkModeSvg.style.display = "inline-block";
+  // lightModeSvg.style.display = "none";
+  // darkModeSvg.style.display = "inline-block";
 }
 
 function disableDarkMode() {
@@ -119,6 +124,6 @@ function disableDarkMode() {
   document.body.classList.remove("darkmode");
   localStorage.setItem("darkmode", null);
 
-  lightModeSvg.style.display = "inline-block";
-  darkModeSvg.style.display = "none";
+  // lightModeSvg.style.display = "inline-block";
+  // darkModeSvg.style.display = "none";
 }
